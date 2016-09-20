@@ -1,0 +1,28 @@
+<%= form_tag questions_path, multipart: true do %>
+
+  <div>
+    <h3 class="buffer-bottom">
+      Укажите уровень пачки вопросов и приложите файл нужного формата
+    </h3>
+    <p>
+      <em>Каждая непустая строка файла должна выглядеть так:</em>
+    </p>
+    <p>
+      <code>
+        Текст вопроса?|Правильный ответ|Ответ 2|Ответ 3|Ответ 4
+      </code>
+    </p>
+  </div>
+  <div class="field buffer-top">
+    <%= label_tag "Уровень — #{Question::QUESTION_LEVELS}" %><br>
+    <%= text_field_tag :questions_level %>
+  </div>
+  <div class="field buffer-top">
+    <%= label_tag 'Файл с вопросами' %><br>
+    <%= file_field_tag :questions_file %>
+  </div>
+
+  <div class="actions buffer-top">
+    <%= submit_tag %>
+  </div>
+<% end %>

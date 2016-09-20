@@ -1,0 +1,20 @@
+<%# Этот js-код будет выполнен прямо на странице игры, используя информацию от сервера %>
+
+<% if @answer_is_correct && !@game.finished? %>
+  <%# Если игра ещё не закончена (был дан правильный ответ на не последний вопрос), %>
+  <%# то нам надо немного обновить экран: %>
+  <%# вывести новый вопрос, поменять текущий приз и скрыть старые подсказки %>
+
+  $('.game-question').html("<%= escape_javascript (
+      render partial: 'game_question', object: @game_question
+    ) %>");
+
+  current_prize = $('.game-prizes').find('.active').toggleClass('active');
+  current_prize.prev().toggleClass('active');
+
+  $('.game-help-info').hide();
+<% else %>
+  <%# Если игра закончилась, тупо редиректим на профиль с помощью js %>
+
+  window.location.href = '<%= user_path(current_user) %>';
+<% end %>

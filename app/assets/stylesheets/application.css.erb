@@ -1,0 +1,83 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap_and_overrides
+ *= require font-awesome
+ *= require games
+ *= require users
+ *= require_self
+ */
+
+body, html {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  background-image: url(<%= asset_path ('bg.jpg') %>);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-position: center center;
+  background-attachment: fixed;
+  color: white;
+}
+
+h2, h3 {
+  margin: 0
+}
+
+.buffer-top {
+  margin-top: 15px;
+}
+
+.buffer-bottom {
+  margin-bottom: 15px;
+}
+
+.buffer-both {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.buffer-top-lg {
+  margin-top: 60px;
+}
+
+.buffer-bottom-lg {
+  margin-bottom: 60px;
+}
+
+.buffer-both-lg {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.btn-default .variant {
+  color: #ffff00;
+}
+
+.btn-variant {
+  font-size: 150%;
+}
+
+.btn-help {
+  font-size: 175%;
+}
+
+.list-group-prizes .list-group-item {
+  background: rgba(213, 235, 255, 0.2);
+  border-width: 1px;
+  border-color: rgba(213, 235, 255, 1);
+}
+
+.list-group-prizes .active {
+  font-weight: bold;
+  color: #ffff00;
+}

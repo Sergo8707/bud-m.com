@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-9 col-sm-push-3">
+    <div class="text-center">
+      <%= image_tag asset_path('logo.png'), class: 'game-logo buffer-bottom' %>
+    </div>
+
+    <div class="game-question">
+      <%# Выводим шаблон с текстом вопроса и вариантами ответа %>
+      <%= render partial: 'game_question', object: @game_question %>
+    </div>
+
+    <div class="buffer-top-lg">
+      <%# Выводим шаблон с кнопками для подсказок и информацией о подсказках %>
+      <%= render partial: 'help', object: @game_question.help_hash, locals: {game: @game} %>
+    </div>
+  </div>
+
+  <div class="col-sm-3 col-sm-pull-9">
+    <ul class="list-group list-group-prizes game-prizes">
+      <% Game::PRIZES.reverse.each_with_index do |prize, index| %>
+        <li class="list-group-item text-center <%= 'active' if (14 - index == @game.current_level) %>">
+          <%= fa_icon('diamond') if Game::FIREPROOF_LEVELS.include?(14-index) %>
+          <%= prize %>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= link_to 'Забрать выигрыш', take_money_game_path(@game), method: :put, class: 'btn btn-info btn-block' %>
+  </div>
+</div>

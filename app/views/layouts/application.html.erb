@@ -1,14 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>BudM</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : 'Хороший программист — счастливчик!' %></title>
   <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', :media => 'all' %>
+
+  <!-- For third-generation iPad with high-resolution Retina display: -->
+  <!-- Size should be 144 x 144 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+  <!-- For iPhone with high-resolution Retina display: -->
+  <!-- Size should be 114 x 114 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+  <!-- For first- and second-generation iPad: -->
+  <!-- Size should be 72 x 72 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <!-- Size should be 57 x 57 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+  <!-- For all other devices -->
+  <!-- Size should be 32 x 32 pixels -->
+  <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+  <%= javascript_include_tag 'application' %>
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
+          type="text/javascript"></script>
+  <![endif]-->
 </head>
 <body>
 
-<%= yield %>
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <%= link_to 'Billionaire', root_path, class: 'navbar-brand' %>
+    <% if user_signed_in? %>
+      <div class="navbar-form navbar-right">
+
+        <% if current_user.is_admin? %>
+          <%# Ссылка на админку %>
+          <%= link_to 'Админка', rails_admin_path, class: 'btn navbar-btn btn-danger btn-xs' %>
+          <%= link_to 'Залить новые вопросы', new_questions_path, class: 'btn navbar-btn btn-warning btn-xs' %>
+        <% end %>
+
+
+        <%= link_to content_tag(:span, "#{current_user.name} - #{number_to_currency current_user.balance}"),
+                    user_path(current_user),
+                    class: 'btn navbar-btn'
+        %>
+        <%= link_to 'Новая игра', games_path, method: :post, class: 'btn navbar-btn btn-success btn-xs' %>
+        <%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'btn btn-info btn-xs navbar-btn' %>
+      </div>
+    <% else %>
+      <div class="navbar-form navbar-right">
+        <%= link_to 'Войти', new_user_session_path, class: 'btn btn-primary' %>
+        <%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <%= bootstrap_flash %>
+      <%= yield %>
+    </div>
+  </div>
+
+  <footer class="buffer-top-lg text-right">
+    <p>&copy; <%= link_to 'Хороший программист', 'http://bit.ly/1U2DVdI' %> 2016 &mdash; &infin;</p>
+  </footer>
+</div>
 
 </body>
 </html>

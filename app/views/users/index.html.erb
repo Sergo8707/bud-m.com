@@ -1,0 +1,28 @@
+<h1>Рейтинг</h1>
+
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <table class="users-table table">
+    <thead>
+      <tr>
+        <th class="text-center">Место</th>
+        <th class="text-center">Имя</th>
+        <th class="text-center">Выигрыш</th>
+        <th class="text-center">Игр</th>
+        <th class="text-center">За игру</th>
+      </tr>
+    </thead>
+
+    <%# Для каждого пользователя выводим информацию о его выигрыше, ссылку на профиль и так далее %>
+    <% @users.each_with_index do |user, index| %>
+      <tr class="text-center">
+        <td><%= index + 1 %></td>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= number_to_currency user.balance %></td>
+        <td><%= user.games.count %></td>
+        <td><%= user.average_prize %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+</div>

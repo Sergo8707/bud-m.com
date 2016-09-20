@@ -1,28 +1,7 @@
-== README
+== Кто хочет стать миллионером?!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Игра для детей от 12 до 159 лет.
 
-Things you may want to cover:
+Учебное приложение курса по Ruby on Rails от «Хорошего программиста». В продакшене настроено на работу с Heroku.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+© http://goodprogrammer.ru

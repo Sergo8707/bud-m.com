@@ -1,0 +1,23 @@
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <div>
+    <h1><%= @user.name %></h1>
+    <%= link_to 'Сменить имя и пароль', edit_user_registration_path(@user) if @user == current_user %>
+  </div>
+  <table class="users-table table">
+    <thead>
+      <tr>
+        <th class="text-center">#</th>
+        <th></th>
+        <th class="text-center">Дата</th>
+        <th class="text-center">Вопрос</th>
+        <th class="text-center">Выигрыш</th>
+        <th class="text-center">Подсказки</th>
+      </tr>
+    </thead>
+
+    <%# Выводим список игр пользователя с помощью нашего фрагмента users/_game %>
+    <%= render partial: 'game', collection: @games %>
+  </table>
+</div>
+</div>
